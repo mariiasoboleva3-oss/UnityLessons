@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     {
       //float verticalInput = Input.GetAxis("Vertical");
       float horizontalInput = Input.GetAxis("Horizontal");
-      transform.Translate(Vector3.right * horizontalInput * walkSpeed * Time.deltaTime);
+      transform.Translate(Vector3.right * horizontalInput * walkSpeed * Time.deltaTime);            
       //transform.Translate(Vector3.forward * verticalInput * walkSpeed * Time.deltaTime);
 
       if (transform.position.x < -xRange)
@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
 
       if (Input.GetKeyUp(KeyCode.Space))
         {
-            Debug.Log("Hello World");
+          Vector3 spawnPosition = new Vector3(transform.position.x, 1 , transform.position.z); //skibidi
+            Instantiate(foodPrefab, spawnPosition, foodPrefab.transform.rotation );
         }
     }
 }
