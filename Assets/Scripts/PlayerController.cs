@@ -10,13 +10,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
        rigidbody = GetComponent<Rigidbody>(); 
-       rigidbody.AddForce(Vector3.up * 6700);
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+     if (Input.GetKeyDown(KeyCode.Space))
+        {
+           rigidbody.AddForce(Vector3.up * 10,ForceMode.Impulse); 
+        }
     }
 }
 //Je m'apelle Sacha 
