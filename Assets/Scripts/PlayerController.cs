@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
   private Rigidbody rigidbody; 
   private bool isOnGround = true;
 
-    // Start is called before the first frame updatepsyj
+    // Start is called before the first frame updatepsyco
     void Start()
     {
        rigidbody = GetComponent<Rigidbody>(); 
@@ -38,3 +38,4 @@ public class PlayerController : MonoBehaviour
 //Je m'apelle Sacha 
 // Je suis en france
 // je veux apprendre l'allemand 
+// SPAWN MANAGER TO DO for obstacles to spawn
