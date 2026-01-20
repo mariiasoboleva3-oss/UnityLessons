@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
   public float gravityModifier = 1.5f;
   public bool isGameOver;
   private Rigidbody rigidbody; 
+  private Animator animator;
   private bool isOnGround = true;
 
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
        rigidbody = GetComponent<Rigidbody>(); 
+       animator = GetComponent<Animator>();
        Physics.gravity = Physics.gravity * gravityModifier;
     }
 
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
         { 
           isOnGround = false;
            rigidbody.AddForce(Vector3.up * jumpForce,ForceMode.Impulse); 
+           animator.SetTrigger("Jump_trig");
         }
     }
 
@@ -40,6 +43,8 @@ public class PlayerController : MonoBehaviour
      if (collision.gameObject.TryGetComponent(out Obstacle obstacle))
         {
             isGameOver = true;
+            animator.SetBool("Death_b",true);
+            animator.SetInteger("DeathType_int",1);
             Debug.Log("GameOver"); 
         }
     }
@@ -47,4 +52,3 @@ public class PlayerController : MonoBehaviour
 //Je m'apelle Sacha 
 // Je suis en france
 // je veux apprendre l'allemand 
-
