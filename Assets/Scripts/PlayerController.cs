@@ -9,9 +9,12 @@ public class PlayerController : MonoBehaviour
 { 
   public int jumpForce = 10; 
   public float gravityModifier = 1.5f;
+  public ParticleSystem explosionParticle;
+  public ParticleSystem runParticle;
   public bool isGameOver;
   private Rigidbody rigidbody; 
   private Animator animator;
+
   private bool isOnGround = true;
 
 
@@ -31,20 +34,24 @@ public class PlayerController : MonoBehaviour
           isOnGround = false;
            rigidbody.AddForce(Vector3.up * jumpForce,ForceMode.Impulse); 
            animator.SetTrigger("Jump_trig");
+           runParticle.Stop();
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-     if (collision.gameObject.TryGetComponent(out Ground ground))
+     if (collision.gameObject.TryGetComponent(out Ground ground) && isGameOver ==  false)
         {
             isOnGround = true;
+            runParticle.Play();
         }   
-     if (collision.gameObject.TryGetComponent(out Obstacle obstacle))
+     if (collision.gameObject.TryGetComponent(out Obstacle obstacle) && isGameOver == false)
         {
             isGameOver = true;
             animator.SetBool("Death_b",true);
             animator.SetInteger("DeathType_int",1);
+            explosionParticle.Play();
+            runParticle.Stop();
             Debug.Log("GameOver"); 
         }
     }
