@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
   public float gravityModifier = 1.5f;
   public ParticleSystem explosionParticle;
   public ParticleSystem runParticle;
+  public AudioClip jump;
+  public AudioClip land;
   public bool isGameOver;
   private Rigidbody rigidbody; 
+  private AudioSource audioSource;
   private Animator animator;
-
   private bool isOnGround = true;
 
 
@@ -23,15 +25,19 @@ public class PlayerController : MonoBehaviour
     {
        rigidbody = GetComponent<Rigidbody>(); 
        animator = GetComponent<Animator>();
+       audioSource = GetComponent<AudioSource>();
+
        Physics.gravity = Physics.gravity * gravityModifier;
     }
 
     // Update is called once per frahmelp
+
     void Update()
     {
      if (Input.GetKeyDown(KeyCode.Space) && isOnGround == true && isGameOver == false )
         { 
           isOnGround = false;
+          audioSource.PlayOneShot(jump);
            rigidbody.AddForce(Vector3.up * jumpForce,ForceMode.Impulse); 
            animator.SetTrigger("Jump_trig");
            runParticle.Stop();
@@ -43,6 +49,7 @@ public class PlayerController : MonoBehaviour
      if (collision.gameObject.TryGetComponent(out Ground ground) && isGameOver ==  false)
         {
             isOnGround = true;
+
             runParticle.Play();
         }   
      if (collision.gameObject.TryGetComponent(out Obstacle obstacle) && isGameOver == false)
@@ -50,12 +57,14 @@ public class PlayerController : MonoBehaviour
             isGameOver = true;
             animator.SetBool("Death_b",true);
             animator.SetInteger("DeathType_int",1);
+            audioSource.PlayOneShot(land);
             explosionParticle.Play();
             runParticle.Stop();
             Debug.Log("GameOver"); 
         }
     }
 }
+// make crash spund when player landed
 //Je m'apelle Sacha 
 // Je suis en france
 // je veux apprendre l'allemand 
