@@ -22,3 +22,6 @@ public class RotateCamera : MonoBehaviour
         transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
     }
 }
+
+
+// okay so, create a new enemy in differents prefabs, (and spawn randomly)
