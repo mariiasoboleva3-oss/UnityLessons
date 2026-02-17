@@ -5,11 +5,13 @@ using System.Runtime.InteropServices;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
+    public GameObject enemyPrefab2;
     private float spawnRange = 9;
 
     void Start()
     {
        SpawnEnemy();
+       SpawnEnemy2();
     }
 
    void Update()
@@ -22,6 +24,11 @@ public class EnemySpawner : MonoBehaviour
        Instantiate(enemyPrefab, GenerateSpawnPos(), transform.rotation);
     }
 
+private void SpawnEnemy2()
+    {  
+       
+       Instantiate(enemyPrefab2, GenerateSpawnPos(), transform.rotation);
+    }
     private Vector3 GenerateSpawnPos()
     {
         float spawmPositionX = Random.Range(-spawnRange , spawnRange);
