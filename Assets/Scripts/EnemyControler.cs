@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
+
 
 public class EnemyControler : MonoBehaviour
 {
@@ -20,6 +20,12 @@ public class EnemyControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameObject.transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
+
+
         Vector3 moveDirection = (player.transform.position - transform.position).normalized;
         rigidBody.AddForce(moveDirection * speed);
     }

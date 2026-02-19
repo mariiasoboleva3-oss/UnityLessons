@@ -4,31 +4,37 @@ using System.Runtime.InteropServices;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public GameObject enemyPrefab2;
-    private float spawnRange = 9;
+    public GameObject[] enemyPrefabs;
+   
+    private float spawnRange = 9; 
+    private int waveNumber = 1;
+    private int enemyCount;
 
     void Start()
     {
-       SpawnEnemy();
-       SpawnEnemy2();
+       SpawnEnemy(waveNumber);
     }
 
    void Update()
     {
+      enemyCount = FindObjectsByType<EnemyControler>(FindObjectsSortMode.None).Length;
 
+      if(enemyCount <= 0)
+      {
+         waveNumber++;
+         SpawnEnemy(waveNumber);
+      }
     }
-    private void SpawnEnemy()
+    private void SpawnEnemy(int numberOfEnemiesPerSpawn)
     {  
-       
-       Instantiate(enemyPrefab, GenerateSpawnPos(), transform.rotation);
+       for (int i = 0; i < numberOfEnemiesPerSpawn; i++)
+       { 
+         int randomEnemy = Random.Range(0,enemyPrefabs.Length);
+         Instantiate(enemyPrefabs[randomEnemy], GenerateSpawnPos(), transform.rotation);
+       }
     }
 
-private void SpawnEnemy2()
-    {  
-       
-       Instantiate(enemyPrefab2, GenerateSpawnPos(), transform.rotation);
-    }
+
     private Vector3 GenerateSpawnPos()
     {
         float spawmPositionX = Random.Range(-spawnRange , spawnRange);
@@ -38,3 +44,4 @@ private void SpawnEnemy2()
     }
 }
 
+//ADD POWERUP POWER SPAWN every wave

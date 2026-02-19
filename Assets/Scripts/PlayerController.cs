@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.UIElements;
 
 public class PlayerControler : MonoBehaviour
 
 {
     public int speed;
     public float powerupStrength;
+    public float powerupTime;
      public GameObject focalPoint;
      public GameObject powerupIndicator;
     private Rigidbody rigidBody; 
@@ -58,12 +60,12 @@ public class PlayerControler : MonoBehaviour
 
     private IEnumerator PowerupCountdown()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(powerupTime);
         hasPowerup = false;
         powerupIndicator.SetActive(false);
     }
     
 }
 
-// add enemies and add spawn
+
    
