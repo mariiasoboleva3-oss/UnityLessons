@@ -5,14 +5,15 @@ using System.Runtime.InteropServices;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
-   
-    private float spawnRange = 9; 
+    public GameObject powerup;
+     private float spawnRange = 9; 
     private int waveNumber = 1;
     private int enemyCount;
 
     void Start()
     {
        SpawnEnemy(waveNumber);
+       SpawnPowerup();
     }
 
    void Update()
@@ -23,7 +24,12 @@ public class EnemySpawner : MonoBehaviour
       {
          waveNumber++;
          SpawnEnemy(waveNumber);
+         SpawnPowerup();
       }
+    }
+    private void SpawnPowerup()
+    { 
+         Instantiate(powerup, GenerateSpawnPos(), transform.rotation);
     }
     private void SpawnEnemy(int numberOfEnemiesPerSpawn)
     {  
