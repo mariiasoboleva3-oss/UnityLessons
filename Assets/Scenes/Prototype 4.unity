@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  powerupStrength: 500
+  powerupStrength: 10000
   powerupTime: 700000000
   focalPoint: {fileID: 93361832}
   powerupIndicator: {fileID: 1907673342}
@@ -450,6 +450,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 4567622960998116983, guid: 78579fe92a41d44748f6b4390e90dd79, type: 3}
   - {fileID: 1910420807020851452, guid: 1169b34afc2794e00b22338bf5be7094, type: 3}
+  - {fileID: 1136577127834054709, guid: 0707c40a979a2442db0d3421d67d647c, type: 3}
   powerup: {fileID: 8563785962202668858, guid: 8c1585a99001646269492c6058344899, type: 3}
 --- !u!4 &1095748743
 Transform:
