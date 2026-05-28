@@ -9,12 +9,13 @@ using UnityEngine.SocialPlatforms;
 public class PlayerController : MonoBehaviour
 {
     public float turnSpeed;
-
+    public bool hasKey;
 
     private Vector3 movement;
     private Quaternion rotation = Quaternion.identity;
     private Animator animator; 
     private Rigidbody rigidbody;
+    
     
 
     
@@ -54,7 +55,14 @@ public class PlayerController : MonoBehaviour
     rigidbody.MovePosition(rigidbody.position + movement * animator.deltaPosition.magnitude);
     rigidbody.MoveRotation(rotation);
   }
-    
+    private void OnCollisionEnter(Collision other)
+    {
+       if (other.gameObject.TryGetComponent(out Key key))
+    {
+      Destroy(other.gameObject);
+      hasKey = true;
+    }
+
+    }
 }
 
-  

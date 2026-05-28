@@ -18,9 +18,10 @@ public class GameEnding : MonoBehaviour
     private bool isPlayerAtExit ;
     private float timer;
 
+
     private void OnTriggerEnter(Collider other)
     {
-    if (other.TryGetComponent(out PlayerController playerController))
+    if (other.TryGetComponent(out PlayerController playerController) && playerController.hasKey)
         {
             isPlayerAtExit = true;
         }
